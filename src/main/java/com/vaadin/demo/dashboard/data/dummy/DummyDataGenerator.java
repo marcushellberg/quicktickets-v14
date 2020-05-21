@@ -1,4 +1,4 @@
-package com.vaadin.demo.dashboard.dummy;
+package com.vaadin.demo.dashboard.data.dummy;
 
 
 import com.vaadin.demo.dashboard.domain.DashboardNotification;

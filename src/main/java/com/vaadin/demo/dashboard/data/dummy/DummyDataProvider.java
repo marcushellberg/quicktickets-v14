@@ -1,4 +1,4 @@
-package com.vaadin.demo.dashboard.dummy;
+package com.vaadin.demo.dashboard.data.dummy;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -10,8 +10,6 @@ import com.google.gson.JsonParser;
 import com.vaadin.demo.dashboard.data.DataProvider;
 import com.vaadin.demo.dashboard.domain.*;
 
-import com.vaadin.flow.internal.CurrentInstance;
-import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.VaadinServlet;
 
 import java.io.*;

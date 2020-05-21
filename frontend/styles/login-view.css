@@ -1,0 +1,31 @@
+.login-view {
+    background-image: radial-gradient(circle at center, #fefefe 0%, #ddd 100%);
+}
+
+.welcome-notification {
+    width: 400px;
+}
+
+.welcome-notification a{
+    color: var(--lumo-base-color);
+    text-decoration: underline;
+}
+
+.login-view .login-panel {
+    background: var(--lumo-base-color);
+    border-radius: var(--lumo-border-radius);
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.1);
+}
+
+.login-view .login-panel .labels {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.login-view .login-panel .labels h4 {
+    text-transform: uppercase;
+    color: var(--lumo-primary-text-color);
+}
+
