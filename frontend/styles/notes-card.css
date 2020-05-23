@@ -1,0 +1,12 @@
+[part="input-field"] {
+    padding: 20px 20px 0;
+    line-height: 20px;
+    font-size: 13px;
+    background: #fffdf2 url(../img/notes-bg.png) repeat local;
+    color: #545145;
+    overflow: auto;
+}
+
+:host(:hover:not([readonly]):not([focused])) [part="input-field"] {
+    background: #fffdf2 url(../img/notes-bg.png) repeat local;
+}

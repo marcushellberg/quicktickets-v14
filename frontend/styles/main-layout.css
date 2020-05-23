@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 801px) {
     .dashboard-header {
         display: none;
     }

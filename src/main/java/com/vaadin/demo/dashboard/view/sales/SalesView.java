@@ -58,9 +58,12 @@ public class SalesView extends VerticalLayout {
     private Component buildHeader() {
         HorizontalLayout header = new HorizontalLayout();
         header.addClassName("viewheader");
+        header.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        header.setWidth("100%");
 
         H1 titleLabel = new H1("Revenue by Movie");
         header.add(titleLabel, buildToolbar());
+        header.expand(titleLabel);
 
         return header;
     }

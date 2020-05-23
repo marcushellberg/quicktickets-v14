@@ -43,7 +43,7 @@
     float: right;
 }
 
-@media (max-width: 699px) {
+@media (max-width: 800px) {
     .sidebar .app-name {
         display: none;
     }
