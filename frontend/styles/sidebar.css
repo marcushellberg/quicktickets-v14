@@ -1,0 +1,44 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    padding-top: var(--lumo-space-m);
+}
+
+.settings-menu {
+    width: 24px;
+}
+
+.settings-menu img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.sidebar .navigation-items-layout {
+    width: 100%;
+}
+
+.sidebar .menu-item {
+    width: 100%;
+    padding: var(--lumo-space-s) var(--lumo-space-l);
+}
+
+.sidebar .menu-item a {
+    color: var(--lumo-contrast-80pct);
+}
+
+.sidebar .menu-item a[highlight],
+.sidebar .menu-item a:hover,
+.sidebar .menu-item a:active {
+    text-decoration: underline;
+}
+
+.sidebar .menu-item .icon {
+    width: 14px;
+    margin-right: var(--lumo-space-m);
+}
+
+.sidebar .menu-item .badge {
+    float: right;
+}

@@ -14,7 +14,7 @@
 .login-view .login-panel {
     background: var(--lumo-base-color);
     border-radius: var(--lumo-border-radius);
-    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: var(--lumo-box-shadow-xs);
 }
 
 .login-view .login-panel .labels {

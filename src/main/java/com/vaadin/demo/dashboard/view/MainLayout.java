@@ -1,6 +1,7 @@
-package com.vaadin.demo.dashboard;
+package com.vaadin.demo.dashboard.view;
 
 import com.google.common.eventbus.Subscribe;
+import com.vaadin.demo.dashboard.AppContext;
 import com.vaadin.demo.dashboard.domain.User;
 import com.vaadin.demo.dashboard.data.dummy.DummyDataProvider;
 import com.vaadin.demo.dashboard.event.DashboardEvent;
@@ -9,31 +10,21 @@ import com.vaadin.demo.dashboard.view.LoginView;
 import com.vaadin.demo.dashboard.view.dashboard.DashboardView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.VaadinSession;
 
-public class MainLayout extends AppLayout implements BeforeEnterObserver {
+@JsModule("@vaadin/vaadin-lumo-styles/presets/compact.js")
+@CssImport("./styles/shared-styles.css")
+public class MainLayout extends AppLayout {
 
     public MainLayout() {
-        AppContext.setDashboardEventbus(new DashboardEventBus());
-        AppContext.setDataProvider(new DummyDataProvider());
         DashboardEventBus.register(this);
-    }
 
-    @Override
-    public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        if (AppContext.getUser() == null) {
-            beforeEnterEvent.rerouteTo(LoginView.class);
-        }
-    }
-
-    @Subscribe
-    public void userLoginRequested(final DashboardEvent.UserLoginRequestedEvent event) {
-        User user = AppContext.getDataProvider().authenticate(event.getUserName(),
-            event.getPassword());
-        AppContext.setUser(user);
-        UI.getCurrent().navigate(DashboardView.class);
+        addToDrawer(new DashboardMenu());
     }
 
     @Subscribe

@@ -1,0 +1,3 @@
+[part="label"] ::slotted(vaadin-context-menu-item) {
+    height: auto;
+}

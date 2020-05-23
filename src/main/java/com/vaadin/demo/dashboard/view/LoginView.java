@@ -1,10 +1,14 @@
 package com.vaadin.demo.dashboard.view;
 
+import com.vaadin.demo.dashboard.AppContext;
+import com.vaadin.demo.dashboard.domain.User;
 import com.vaadin.demo.dashboard.event.DashboardEvent.UserLoginRequestedEvent;
 import com.vaadin.demo.dashboard.event.DashboardEventBus;
+import com.vaadin.demo.dashboard.view.dashboard.DashboardView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -20,11 +24,13 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("serial")
 @Route("login")
 @CssImport("./styles/login-view.css")
+@PageTitle("Login | QuickTickets")
 public class LoginView extends VerticalLayout {
 
     public LoginView() {
@@ -47,8 +53,9 @@ public class LoginView extends VerticalLayout {
         ));
         notification.addThemeVariants(NotificationVariant.LUMO_CONTRAST);
         notification.setPosition(Notification.Position.BOTTOM_CENTER);
-        notification.setDuration(0);
+        notification.setDuration(20000);
         notification.open();
+        addDetachListener(e -> notification.close());
     }
 
     private Component buildLoginForm() {
@@ -82,8 +89,7 @@ public class LoginView extends VerticalLayout {
         fields.setAlignSelf(Alignment.END, signin);
 
         signin.addClickListener(click ->
-            DashboardEventBus.post(new UserLoginRequestedEvent(username
-                .getValue(), password.getValue()))
+            login(username.getValue(), password.getValue())
         );
         return fields;
     }
@@ -95,6 +101,13 @@ public class LoginView extends VerticalLayout {
         labels.add(new H4("Welcome"));
         labels.add(new H3("QuickTickets Dashboard"));
         return labels;
+    }
+
+    private void login(String username, String password) {
+        User user = AppContext.getDataProvider().authenticate(username,
+            password);
+        AppContext.setUser(user);
+        UI.getCurrent().navigate(DashboardView.class);
     }
 
 }

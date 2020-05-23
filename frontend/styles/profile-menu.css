@@ -1,0 +1,9 @@
+.profile img {
+    width: 28px;
+    border-radius: 50%;
+}
+
+[part$="button"] {
+    height: auto;
+    background: transparent;
+}
