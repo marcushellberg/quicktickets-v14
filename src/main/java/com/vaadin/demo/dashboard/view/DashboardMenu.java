@@ -40,7 +40,7 @@ public final class DashboardMenu extends Div {
         add(new Html("<style include='lumo-badge'></style>"));
         addClassName("sidebar");
         getElement().getThemeList().add("dark");
-        add(new Html("<div>QuickTickets <strong>Dashboard</strong></div>"));
+        add(new Html("<div class='app-name'>QuickTickets <strong>Dashboard</strong></div>"));
         add(buildUserMenu());
         add(buildMenuItems());
     }

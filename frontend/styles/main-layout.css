@@ -1,0 +1,13 @@
+.dashboard-header {
+    width: 100%;
+}
+
+.dashboard-header .app-name {
+    text-align: center;
+}
+
+@media (min-width: 700px) {
+    .dashboard-header {
+        display: none;
+    }
+}

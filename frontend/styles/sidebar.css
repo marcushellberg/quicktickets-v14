@@ -42,3 +42,9 @@
 .sidebar .menu-item .badge {
     float: right;
 }
+
+@media (max-width: 699px) {
+    .sidebar .app-name {
+        display: none;
+    }
+}
