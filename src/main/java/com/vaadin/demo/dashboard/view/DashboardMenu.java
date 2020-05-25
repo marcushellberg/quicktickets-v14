@@ -2,6 +2,7 @@ package com.vaadin.demo.dashboard.view;
 
 import com.vaadin.demo.dashboard.AppContext;
 import com.vaadin.demo.dashboard.domain.User;
+import com.vaadin.demo.dashboard.event.DashboardEvent;
 import com.vaadin.demo.dashboard.event.DashboardEventBus;
 import com.vaadin.demo.dashboard.view.dashboard.DashboardView;
 import com.vaadin.demo.dashboard.view.reports.ReportsView;
@@ -62,6 +63,7 @@ public final class DashboardMenu extends Div {
         settingsItem.getSubMenu().addItem("Preferences", e -> {
         });
         settingsItem.getSubMenu().addItem("Sign out", e -> {
+            DashboardEventBus.post(new DashboardEvent.UserLoggedOutEvent());
         });
         return settings;
     }

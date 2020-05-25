@@ -63,6 +63,8 @@
 .dashboard-view .dashboard-panels .card .header h4 {
     margin: 0;
     flex: 1;
+    color: var(--lumo-primary-text-color);
+    text-transform: uppercase;
 }
 
 .notification-item .notification-title {
