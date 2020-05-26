@@ -1,0 +1,33 @@
+.reports .draft-thumb {
+    position: relative;
+    text-align: center;
+}
+
+.reports .draft-thumb img {
+    box-shadow: var(--lumo-box-shadow-m);
+    margin: 0 0 var(--lumo-space-m);
+}
+
+.reports .draft-thumb:hover img {
+    outline: 2px solid var(--lumo-primary-text-color);
+}
+
+.reports .draft-thumb span {
+    font-size: 0.8em;
+}
+
+.reports .draft-thumb .delete-button {
+    position: absolute;
+    top: 0;
+    right: 6px;
+    display: none;
+}
+
+.reports .draft-thumb:hover .delete-button {
+    display: block;
+}
+
+.reports .create {
+    background-color: var(--lumo-contrast-5pct);
+    border: 1px solid var(--lumo-contrast-10pct);
+}

@@ -24,7 +24,9 @@ public abstract class TabSheet extends VerticalLayout {
 
     public TabSheet() {
         tabs = new Tabs();
+        tabs.setWidth("100%");
         content = new Scroller();
+        content.setSizeFull();
         add(tabs, content);
         expand(content);
         tabs.addSelectedChangeListener(e -> {

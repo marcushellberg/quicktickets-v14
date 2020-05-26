@@ -9,6 +9,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.notification.Notification;
@@ -25,6 +26,7 @@ import java.util.Date;
 
 @Route(value = "reports", layout = MainLayout.class)
 @PageTitle("Reports | QuickTickets")
+@CssImport("./styles/reports-view.css")
 public class ReportsView extends TabSheet implements
     ReportEditor.ReportEditorListener {
 
@@ -50,6 +52,7 @@ public class ReportsView extends TabSheet implements
         titleAndDrafts.addClassName("drafts");
         allDrafts.add(titleAndDrafts);
         allDrafts.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        allDrafts.setJustifyContentMode(JustifyContentMode.CENTER);
 
         H1 draftsTitle = new H1("Drafts");
         titleAndDrafts.add(draftsTitle);
@@ -62,6 +65,7 @@ public class ReportsView extends TabSheet implements
 
     private Component buildDraftsList() {
         HorizontalLayout drafts = new HorizontalLayout();
+        drafts.setDefaultVerticalComponentAlignment(Alignment.START);
 
         drafts.add(buildDraftThumb());
         drafts.add(buildCreateBox());
@@ -70,10 +74,10 @@ public class ReportsView extends TabSheet implements
     }
 
     private Component buildDraftThumb() {
-        VerticalLayout draftThumb = new VerticalLayout();
-        draftThumb.setMargin(false);
+        Div draftThumb = new Div();
 
         draftThumb.addClassName("draft-thumb");
+        draftThumb.setWidth(null);
         Image draft = new Image("img/draft-report-thumb.png", "draft");
         draft.setWidth("160px");
         draft.setHeight("200px");
@@ -86,6 +90,7 @@ public class ReportsView extends TabSheet implements
         final Button delete = new Button("×");
         delete.getElement().setAttribute("title", "Delete draft");
         delete.addClassName("delete-button");
+        delete.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         delete.addClickListener(click -> Notification.show("Not implemented in this demo"));
         draftThumb.add(delete);
 
@@ -113,6 +118,7 @@ public class ReportsView extends TabSheet implements
 
         createBox.add(create);
         createBox.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        createBox.setJustifyContentMode(JustifyContentMode.CENTER);
         return createBox;
     }
 
@@ -183,7 +189,7 @@ public class ReportsView extends TabSheet implements
             DashboardEventBus.post(new DashboardEvent.ReportsCountUpdatedEvent(
                 getComponentCount() - 1));
         });
-        discard.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        discard.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_PRIMARY);
 
         Button cancel = new Button("Cancel", click -> confirmDialog.close());
 
