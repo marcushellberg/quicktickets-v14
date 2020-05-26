@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -30,8 +31,11 @@ public abstract class TabSheet extends VerticalLayout {
         add(tabs, content);
         expand(content);
         tabs.addSelectedChangeListener(e -> {
-            content.setContent(tabsToComponents.get(e.getSelectedTab()));
+            Component content = tabsToComponents.get(e.getSelectedTab());
+            this.content.setContent(content);
         });
+        addDetachListener(e -> System.out.println("Detached! " + tabsToComponents.size()));
+        addAttachListener(e -> System.out.println("Attached! " + tabsToComponents.size()));
     }
 
     public void addTab(Component component, String caption, boolean closeable) {
@@ -85,4 +89,9 @@ public abstract class TabSheet extends VerticalLayout {
     }
 
     abstract protected void tabCloseRequested(Tab tab);
+
+    @Override
+    public int getComponentCount() {
+        return tabsToComponents.size();
+    }
 }

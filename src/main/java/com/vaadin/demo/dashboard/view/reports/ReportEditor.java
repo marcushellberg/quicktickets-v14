@@ -2,10 +2,20 @@ package com.vaadin.demo.dashboard.view.reports;
 
 
 
+import com.vaadin.demo.dashboard.component.InlineTextEditor;
+import com.vaadin.demo.dashboard.component.TopSixTheatersChart;
+import com.vaadin.demo.dashboard.component.TopTenMoviesTable;
+import com.vaadin.demo.dashboard.component.TransactionsListing;
+import com.vaadin.demo.dashboard.domain.Transaction;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Html;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dnd.DragSource;
 import com.vaadin.flow.component.dnd.DropTarget;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -13,7 +23,10 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 
+import java.util.Collection;
+
 @SuppressWarnings({ "serial", "unchecked" })
+@CssImport("./styles/reports-editor.css")
 public final class ReportEditor extends VerticalLayout {
 
     private final ReportEditorListener listener;
@@ -52,6 +65,8 @@ public final class ReportEditor extends VerticalLayout {
     private Component buildPalette() {
         HorizontalLayout paletteLayout = new HorizontalLayout();
         paletteLayout.addClassName("palette");
+        paletteLayout.setWidth("100%");
+        paletteLayout.setJustifyContentMode(JustifyContentMode.CENTER);
 
         paletteLayout.add(buildPaletteItem(PaletteItemType.TEXT));
         paletteLayout.add(buildPaletteItem(PaletteItemType.TABLE));
@@ -72,8 +87,12 @@ public final class ReportEditor extends VerticalLayout {
     }
 
     private Component buildPaletteItem(final PaletteItemType type) {
-        VerticalLayout item = new VerticalLayout(type.getIcon(), new Span(type.getTitle()));
-
+        Icon icon = type.getIcon();
+        icon.addClassName("icon");
+        VerticalLayout item = new VerticalLayout(icon, new Span(type.getTitle()));
+        item.addClassName("palette-item");
+        item.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        item.setWidth(null);
         DragSource<VerticalLayout> ddWrap = DragSource.create(item);
         ddWrap.setDragData(type);
         return item;
@@ -84,20 +103,66 @@ public final class ReportEditor extends VerticalLayout {
         canvas.add(paletteItemType, prefillData);
     }
 
-    static class SortableLayout extends VerticalLayout implements DropTarget<VerticalLayout> {
+    static class SortableLayout extends Div implements DropTarget<VerticalLayout> {
 
-        private TextField titleLabel;
+        private final H2 placeholder;
+        private Input titleLabel;
 
         public SortableLayout() {
-            titleLabel = new TextField();
+            addClassName("canvas");
+            setWidth(null);
+            setActive(true);
+            titleLabel = new Input();
+            titleLabel.addClassName("title");
+
+            placeholder = new H2("Drag items here");
+            add(titleLabel);
+
+            addDropListener(event -> {
+                event.getDragSourceComponent().ifPresent(source -> {
+                    if(!source.equals(this)) {
+                        event.getDragData().ifPresent(type -> {
+                            add((PaletteItemType) type, null);
+                        });
+                    }
+                });
+
+            });
         }
 
         public void setTitle(String title) {
             titleLabel.setValue(title);
         }
 
-        public void add(PaletteItemType paletteItemType, Object prefillData) {
+        public void add(final PaletteItemType paletteItemType,
+                                 final Object prefillData) {
+            if (placeholder.getParent().isPresent()) {
+                remove(placeholder);
+            }
+            addComponentAtIndex(1,
+                createComponentFromPaletteItem(
+                    paletteItemType, prefillData));
+        }
 
+        private Component createComponentFromPaletteItem(
+            final PaletteItemType type, final Object prefillData) {
+            Component result = null;
+            if (type == PaletteItemType.TEXT) {
+                result = new InlineTextEditor(prefillData != null
+                    ? String.valueOf(prefillData) : null);
+            } else if (type == PaletteItemType.TABLE) {
+                result = new TopTenMoviesTable();
+            } else if (type == PaletteItemType.CHART) {
+                result = new TopSixTheatersChart();
+            } else if (type == PaletteItemType.TRANSACTIONS) {
+                result = new TransactionsListing(
+                    (Collection<Transaction>) prefillData);
+            }
+            if(result != null) {
+                ((HasSize) result).setHeight(null);
+            }
+
+            return result;
         }
     }
 

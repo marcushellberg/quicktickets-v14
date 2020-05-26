@@ -1,0 +1,25 @@
+.editor .palette-item {
+    font-size: 0.9em;
+}
+.editor .palette-item .icon {
+    height: 16px;
+}
+
+.editor .canvas {
+    width: 95%;
+    min-height: 29cm;
+    margin: var(--lumo-space-l) 0;
+    box-shadow: var(--lumo-box-shadow-m);
+}
+
+.editor .canvas .title {
+    border: none;
+    width: 95%;
+    text-align: center;
+    margin: var(--lumo-space-l);
+    padding: var(--lumo-space-s);
+    font-size: 1.5em;
+}
+.editor .canvas .title:hover {
+    background-color: var(--lumo-contrast-5pct);
+}
