@@ -4,7 +4,6 @@ import com.vaadin.demo.dashboard.AppContext;
 import com.vaadin.demo.dashboard.domain.User;
 import com.vaadin.demo.dashboard.view.dashboard.DashboardView;
 import com.vaadin.demo.dashboard.view.reports.ReportsView;
-import com.vaadin.demo.dashboard.view.reports.ReportsViewComponent;
 import com.vaadin.demo.dashboard.view.sales.SalesView;
 import com.vaadin.demo.dashboard.view.schedule.ScheduleView;
 import com.vaadin.demo.dashboard.view.transactions.TransactionsView;

@@ -49,11 +49,11 @@ public class AppContext {
         UI.getCurrent().getPage().reload();
     }
 
-    private static <T> void saveToUI(Class<T> key, T value) {
+    public static <T> void saveToUI(Class<T> key, T value) {
         ComponentUtil.setData(UI.getCurrent(), key, value);
     }
 
-    private static <T> T readFromUI(Class<T> key) {
+    public static <T> T readFromUI(Class<T> key) {
         return ComponentUtil.getData(UI.getCurrent(), key);
     }
 
