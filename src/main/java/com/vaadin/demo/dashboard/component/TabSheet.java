@@ -12,7 +12,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,22 +19,21 @@ import java.util.Optional;
 public abstract class TabSheet extends VerticalLayout {
 
     private final Tabs tabs;
-    private final Scroller content;
-    private Map<Tab, Component> tabsToComponents = new HashMap<>();
+    private final Div content;
+    private final Map<Tab, Component> tabsToComponents = new HashMap<>();
 
     public TabSheet() {
         tabs = new Tabs();
         tabs.setWidth("100%");
-        content = new Scroller();
+        content = new Div();
         content.setSizeFull();
+        content.getStyle().set("overflow-y", "scroll");
         add(tabs, content);
         expand(content);
         tabs.addSelectedChangeListener(e -> {
-            Component content = tabsToComponents.get(e.getSelectedTab());
-            this.content.setContent(content);
+            content.getChildren().forEach(c -> c.setVisible(false));
+            tabsToComponents.get(e.getSelectedTab()).setVisible(true);
         });
-        addDetachListener(e -> System.out.println("Detached! " + tabsToComponents.size()));
-        addAttachListener(e -> System.out.println("Attached! " + tabsToComponents.size()));
     }
 
     public void addTab(Component component, String caption, boolean closeable) {
@@ -49,9 +47,11 @@ public abstract class TabSheet extends VerticalLayout {
             tabContent.add(closeButton);
         }
 
+        content.add(component);
         tab.add(tabContent);
         tabsToComponents.put(tab, component);
         tabs.add(tab);
+
 
         // Automatically show first tab
         if (tabs.getSelectedTab() == null) {
@@ -65,9 +65,7 @@ public abstract class TabSheet extends VerticalLayout {
             tabsToComponents.remove(tab);
 
             if (tabsToComponents.size() > 0) {
-                tabs.setSelectedIndex(tabsToComponents.size() -1);
-            } else {
-                content.setContent(new Div());
+                tabs.setSelectedIndex(getComponentCount() -1);
             }
         } else {
             tabs.remove(tab);

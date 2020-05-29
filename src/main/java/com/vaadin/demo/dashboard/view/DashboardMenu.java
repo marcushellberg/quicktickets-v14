@@ -2,10 +2,9 @@ package com.vaadin.demo.dashboard.view;
 
 import com.vaadin.demo.dashboard.AppContext;
 import com.vaadin.demo.dashboard.domain.User;
-import com.vaadin.demo.dashboard.event.DashboardEvent;
-import com.vaadin.demo.dashboard.event.DashboardEventBus;
 import com.vaadin.demo.dashboard.view.dashboard.DashboardView;
 import com.vaadin.demo.dashboard.view.reports.ReportsView;
+import com.vaadin.demo.dashboard.view.reports.ReportsViewComponent;
 import com.vaadin.demo.dashboard.view.sales.SalesView;
 import com.vaadin.demo.dashboard.view.schedule.ScheduleView;
 import com.vaadin.demo.dashboard.view.transactions.TransactionsView;
@@ -22,12 +21,8 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.dom.ElementUtil;
-import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.router.HighlightConditions;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.server.Command;
 
 @JsModule("@vaadin/vaadin-lumo-styles/badge.js")
 // Here, we add the style sheet to the global scope
@@ -62,9 +57,7 @@ public final class DashboardMenu extends Div {
         });
         settingsItem.getSubMenu().addItem("Preferences", e -> {
         });
-        settingsItem.getSubMenu().addItem("Sign out", e -> {
-            DashboardEventBus.post(new DashboardEvent.UserLoggedOutEvent());
-        });
+        settingsItem.getSubMenu().addItem("Sign out", e -> AppContext.logout());
         return settings;
     }
 

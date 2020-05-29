@@ -14,7 +14,7 @@ public class InlineTextEditor extends Div {
 
     private final Component editor;
     private final Component readOnly;
-    private  Html text;
+    private Div text = new Div();
 
     public InlineTextEditor(final String initialValue) {
         setWidth("100%");
@@ -32,7 +32,7 @@ public class InlineTextEditor extends Div {
     }
 
     private Component buildReadOnly(final String initialValue) {
-        text = new Html("<div>"+initialValue+"</div>");
+        setHtml(initialValue);
 
         Button editButton = new Button(VaadinIcon.EDIT.create());
         editButton.addThemeVariants(ButtonVariant.LUMO_ICON);
@@ -45,22 +45,19 @@ public class InlineTextEditor extends Div {
         result.addClassName("text-editor");
         result.setSizeFull();
         result.addClickListener(event -> {
-//            if (event.getChildComponent() == text && event.isDoubleClick()) {
-//                setCompositionRoot(editor);
-//            }
             removeAll();
             add(editor);
         });
         return result;
     }
 
+    private void setHtml(String html) {
+        text.getElement().setProperty("innerHtml", html); // 😬
+    }
+
     private Component buildEditor(final String initialValue) {
         final RichTextEditor rta = new RichTextEditor(initialValue);
-        rta.addValueChangeListener(event -> {
-
-            text = new Html("<div>"+event.getValue()+"</div>");
-
-        });
+        rta.addValueChangeListener(event -> setHtml(event.getValue()));
         rta.setWidth("100%");
 
         Button save = new Button("Save");

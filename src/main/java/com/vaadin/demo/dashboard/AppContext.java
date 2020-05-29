@@ -44,6 +44,11 @@ public class AppContext {
         return VaadinSession.getCurrent().getAttribute(User.class);
     }
 
+    public static void logout() {
+        VaadinSession.getCurrent().close();
+        UI.getCurrent().getPage().reload();
+    }
+
     private static <T> void saveToUI(Class<T> key, T value) {
         ComponentUtil.setData(UI.getCurrent(), key, value);
     }

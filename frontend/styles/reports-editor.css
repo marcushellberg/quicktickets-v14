@@ -1,6 +1,11 @@
+.editor .palette-button {
+    border: none;
+    background: transparent;
+}
 .editor .palette-item {
     font-size: 0.9em;
 }
+
 .editor .palette-item .icon {
     height: 16px;
 }
@@ -10,6 +15,7 @@
     min-height: 29cm;
     margin: var(--lumo-space-l) 0;
     box-shadow: var(--lumo-box-shadow-m);
+    padding: var(--lumo-space-xl);
 }
 
 .editor .canvas .title {

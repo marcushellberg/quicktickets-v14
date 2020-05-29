@@ -10,13 +10,11 @@ import com.vaadin.demo.dashboard.domain.Transaction;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Html;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dnd.DragSource;
 import com.vaadin.flow.component.dnd.DropTarget;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Input;
-import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -72,17 +70,6 @@ public final class ReportEditor extends VerticalLayout {
         paletteLayout.add(buildPaletteItem(PaletteItemType.TABLE));
         paletteLayout.add(buildPaletteItem(PaletteItemType.CHART));
 
-//        paletteLayout.addClickListener(new LayoutClickListener() {
-//            @Override
-//            public void layoutClick(final LayoutClickEvent event) {
-//                if (event.getChildComponent() != null) {
-//                    PaletteItemType data = (PaletteItemType) ((DragAndDropWrapper) event
-//                            .getChildComponent()).getData();
-//                    addWidget(data, null);
-//                }
-//            }
-//        });
-
         return paletteLayout;
     }
 
@@ -95,7 +82,11 @@ public final class ReportEditor extends VerticalLayout {
         item.setWidth(null);
         DragSource<VerticalLayout> ddWrap = DragSource.create(item);
         ddWrap.setDragData(type);
-        return item;
+        NativeButton button = new NativeButton();
+        button.getElement().appendChild(item.getElement());
+        button.addClassName("palette-button");
+        button.addClickListener(click -> addWidget(type, null));
+        return button;
     }
 
     public void addWidget(final PaletteItemType paletteItemType,

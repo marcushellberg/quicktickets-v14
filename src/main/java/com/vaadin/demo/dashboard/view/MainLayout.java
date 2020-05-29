@@ -16,17 +16,10 @@ public class MainLayout extends AppLayout {
 
     public MainLayout() {
         DashboardEventBus.register(this);
+        addDetachListener(e -> DashboardEventBus.unregister(this));
 
         addToDrawer(new DashboardMenu());
         addToNavbar(new DashboardHeader());
     }
 
-    @Subscribe
-    public void userLoggedOut(final DashboardEvent.UserLoggedOutEvent event) {
-        // When the user logs out, current VaadinSession gets closed and the
-        // page gets reloaded on the login screen. Do notice the this doesn't
-        // invalidate the current HttpSession.
-        VaadinSession.getCurrent().close();
-        UI.getCurrent().getPage().reload();
-    }
 }
