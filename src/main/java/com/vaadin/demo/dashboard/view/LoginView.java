@@ -53,7 +53,7 @@ public class LoginView extends VerticalLayout {
         ));
         notification.addThemeVariants(NotificationVariant.LUMO_CONTRAST);
         notification.setPosition(Notification.Position.BOTTOM_CENTER);
-        notification.setDuration(20000);
+        notification.setDuration(60000);
         notification.open();
         addDetachListener(e -> notification.close());
     }
@@ -71,7 +71,7 @@ public class LoginView extends VerticalLayout {
     }
 
     private Component buildFields() {
-        HorizontalLayout fields = new HorizontalLayout();
+        Div fields = new Div();
         fields.addClassName("fields");
 
         final TextField username = new TextField("Username");
@@ -86,7 +86,6 @@ public class LoginView extends VerticalLayout {
         signin.focus();
 
         fields.add(username, password, signin);
-        fields.setAlignSelf(Alignment.END, signin);
 
         signin.addClickListener(click ->
             login(username.getValue(), password.getValue())

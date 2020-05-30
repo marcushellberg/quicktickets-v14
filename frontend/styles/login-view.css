@@ -3,7 +3,7 @@
 }
 
 .welcome-notification {
-    width: 400px;
+    max-width: 400px;
 }
 
 .welcome-notification a{
@@ -15,11 +15,13 @@
     background: var(--lumo-base-color);
     border-radius: var(--lumo-border-radius);
     box-shadow: var(--lumo-box-shadow-xs);
+    padding: var(--lumo-space-m) var(--lumo-space-xl);
 }
 
 .login-view .login-panel .labels {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
 }
@@ -32,4 +34,26 @@
 .login-view .login-panel .labels h3 {
     font-weight: 300;
     font-size: 1.2em;
+}
+
+.login-view .login-panel .fields {
+    display: grid;
+    width: 100%;
+    gap: var(--lumo-space-m);
+    grid-template-columns: 3fr 3fr 1fr;
+    align-items: baseline;
+}
+
+@media (max-width: 800px) {
+    .login-view .login-panel .labels > * {
+        width: 100%;
+    }
+    .login-view .login-panel .labels h3 {
+        margin-top: 0;
+    }
+
+    .login-view .login-panel .fields {
+        grid-template-columns: 1fr;
+        grid-auto-rows: min-content;
+    }
 }
