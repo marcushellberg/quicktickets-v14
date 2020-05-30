@@ -8,3 +8,7 @@ Note that the Rotten Tomatoes API it depended on is no longer available, so it i
 Make sure you have Java 11 or later installed, then run:
 
 `mvn jetty:run`
+
+## Online demo
+
+You can try out the demo at https://quicktickets-v14.herokuapp.com/
