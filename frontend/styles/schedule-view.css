@@ -1,0 +1,38 @@
+.schedule .tray {
+    position: relative;
+    transition: transform 400ms 120ms;
+    transform: translateY(150%);
+}
+
+.schedule .tray.animate-reveal {
+    transform: translateY(0);
+}
+
+.schedule .catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 140px);
+    gap: 10px;
+}
+
+.moviedetailswindow .detail {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.moviedetailswindow .detail .cover {
+    margin: 0 auto var(--lumo-space-l);
+}
+
+.moviedetailswindow .fields {
+    min-width: 400px;
+    max-width: 600px;
+    margin-left: var(--lumo-space-l);
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-template-columns: 100px 1fr;
+    gap: var(--lumo-space-m);
+}
+
+.moviedetailswindow .fields .label {
+    font-weight: 600;
+}

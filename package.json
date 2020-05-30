@@ -44,7 +44,16 @@
     "@vaadin/vaadin-radio-button": "1.2.6",
     "@vaadin/vaadin-lumo-styles": "1.5.0",
     "@vaadin/vaadin-material-styles": "1.2.3",
-    "@vaadin/vaadin-rich-text-editor": "1.1.1"
+    "@vaadin/vaadin-rich-text-editor": "1.1.1",
+    "@fullcalendar/core": "4.4.0",
+    "@fullcalendar/list": "4.4.0",
+    "@fullcalendar/moment-timezone": "4.4.0",
+    "@fullcalendar/interaction": "4.4.0",
+    "@fullcalendar/timegrid": "4.4.0",
+    "moment": "2.24.0",
+    "@fullcalendar/daygrid": "4.4.0",
+    "moment-timezone": "0.5.28",
+    "@fullcalendar/moment": "4.4.0"
   },
   "devDependencies": {
     "webpack": "4.42.0",
@@ -101,7 +110,16 @@
       "@vaadin/vaadin-radio-button": "1.2.6",
       "@vaadin/vaadin-lumo-styles": "1.5.0",
       "@vaadin/vaadin-material-styles": "1.2.3",
-      "@vaadin/vaadin-rich-text-editor": "1.1.1"
+      "@vaadin/vaadin-rich-text-editor": "1.1.1",
+      "@fullcalendar/core": "4.4.0",
+      "@fullcalendar/list": "4.4.0",
+      "@fullcalendar/moment-timezone": "4.4.0",
+      "@fullcalendar/interaction": "4.4.0",
+      "@fullcalendar/timegrid": "4.4.0",
+      "moment": "2.24.0",
+      "@fullcalendar/daygrid": "4.4.0",
+      "moment-timezone": "0.5.28",
+      "@fullcalendar/moment": "4.4.0"
     },
     "devDependencies": {
       "webpack-babel-multi-target-plugin": "2.3.3",
@@ -114,6 +132,6 @@
       "webpack-merge": "4.2.2",
       "webpack-dev-server": "3.10.3"
     },
-    "hash": "ff6bf9595a64a06dbab813090ee759084167b12ba737d4b8d0a4e8305a6b4b05"
+    "hash": "e15917ac1827e4572dd3bd725656b652499bf6ee40d9fa673f3f8617c95bb9ec"
   }
 }

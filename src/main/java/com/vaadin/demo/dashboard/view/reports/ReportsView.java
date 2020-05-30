@@ -14,6 +14,7 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
@@ -52,12 +53,12 @@ public class ReportsView extends TabSheet implements
         titleAndDrafts.setMargin(false);
         titleAndDrafts.addClassName("drafts");
         allDrafts.add(titleAndDrafts);
-        allDrafts.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        allDrafts.setJustifyContentMode(JustifyContentMode.CENTER);
+        allDrafts.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
+        allDrafts.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
         H1 draftsTitle = new H1("Drafts");
         titleAndDrafts.add(draftsTitle);
-        titleAndDrafts.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        titleAndDrafts.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
 
         titleAndDrafts.add(buildDraftsList());
 
@@ -66,7 +67,7 @@ public class ReportsView extends TabSheet implements
 
     private Component buildDraftsList() {
         HorizontalLayout drafts = new HorizontalLayout();
-        drafts.setDefaultVerticalComponentAlignment(Alignment.START);
+        drafts.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.START);
 
         drafts.add(buildDraftThumb());
         drafts.add(buildCreateBox());
@@ -118,8 +119,8 @@ public class ReportsView extends TabSheet implements
         create.addClickListener(click -> addReport(ReportType.EMPTY, null));
 
         createBox.add(create);
-        createBox.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        createBox.setJustifyContentMode(JustifyContentMode.CENTER);
+        createBox.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
+        createBox.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         return createBox;
     }
 
