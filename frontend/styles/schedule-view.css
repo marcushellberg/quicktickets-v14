@@ -14,17 +14,27 @@
     gap: 10px;
 }
 
+.moviedetailswindow {
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .moviedetailswindow .detail {
+    flex: 1;
     display: flex;
     flex-wrap: wrap;
+    overflow-y: scroll;
 }
 
 .moviedetailswindow .detail .cover {
     margin: 0 auto var(--lumo-space-l);
+    width: 200px;
+    max-width: 100%;
+
 }
 
 .moviedetailswindow .fields {
-    min-width: 400px;
     max-width: 600px;
     margin-left: var(--lumo-space-l);
     display: grid;

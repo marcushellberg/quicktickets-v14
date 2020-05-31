@@ -10,6 +10,7 @@ import com.vaadin.demo.dashboard.event.DashboardEventBus;
 import com.vaadin.demo.dashboard.view.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasStyle;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -68,7 +69,6 @@ public final class ScheduleView extends VerticalLayout {
 
         calendar = FullCalendarBuilder.create().build();
         calendar.setFirstDay(DayOfWeek.MONDAY);
-        calendar.changeView(CalendarViewImpl.TIME_GRID_WEEK);
         calendar.setTimezone(Timezone.getSystem());
         calendar.setMinTime(LocalTime.of(11, 0));
         calendar.setMaxTime(LocalTime.of(23,0));
@@ -98,7 +98,20 @@ public final class ScheduleView extends VerticalLayout {
         });
         calendar.addEntryDroppedListener(e -> setTrayVisible(true));
         calendar.addEntryResizedListener(e -> setTrayVisible(true));
+
+        UI.getCurrent().getPage().retrieveExtendedClientDetails(r ->
+            setCalendarView(r.getScreenWidth()));
+        UI.getCurrent().getPage().addBrowserWindowResizeListener(e ->
+            setCalendarView(e.getWidth()));
         return calendarLayout;
+    }
+
+    private void setCalendarView(int width){
+        if(width <= 800){
+            calendar.changeView(CalendarViewImpl.LIST_WEEK);
+        } else {
+            calendar.changeView(CalendarViewImpl.TIME_GRID_WEEK);
+        }
     }
 
     private void populateCalendar() {

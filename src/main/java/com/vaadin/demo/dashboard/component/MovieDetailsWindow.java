@@ -25,28 +25,18 @@ public final class MovieDetailsWindow extends Dialog {
 
     private MovieDetailsWindow(final Movie movie, final Date startTime,
                                final Date endTime) {
-        VerticalLayout layout = new VerticalLayout();
-        layout.addClassName("moviedetailswindow");
-        add(layout);
 
-        layout.add(new H2(movie.getTitle()));
+        Div layout = new Div();
+        layout.addClassName("moviedetailswindow");
+
         setCloseOnEsc(true);
         setResizable(false);
 
-        VerticalLayout content = new VerticalLayout();
-        content.setSizeFull();
-        layout.add(content);
-        content.setMargin(false);
-        content.setSpacing(false);
-
-        Scroller detailsWrapper = new Scroller(buildMovieDetails(movie, startTime,
-                endTime));
-        detailsWrapper.setSizeFull();
-        detailsWrapper.addClassName("scroll-divider");
-        content.add(detailsWrapper);
-        content.expand(detailsWrapper);
-
-        content.add(buildFooter());
+        layout.add(new H2(movie.getTitle()));
+        layout.add(buildMovieDetails(movie, startTime,
+            endTime));
+        layout.add(buildFooter());
+        add(layout);
     }
 
     private Component buildFooter() {
