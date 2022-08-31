@@ -52,7 +52,7 @@
     "@fullcalendar/timegrid": "4.4.0",
     "moment": "2.24.0",
     "@fullcalendar/daygrid": "4.4.0",
-    "moment-timezone": "0.5.28",
+    "moment-timezone": "0.5.35",
     "@fullcalendar/moment": "4.4.0"
   },
   "devDependencies": {
@@ -118,7 +118,7 @@
       "@fullcalendar/timegrid": "4.4.0",
       "moment": "2.24.0",
       "@fullcalendar/daygrid": "4.4.0",
-      "moment-timezone": "0.5.28",
+      "moment-timezone": "0.5.35",
       "@fullcalendar/moment": "4.4.0"
     },
     "devDependencies": {
